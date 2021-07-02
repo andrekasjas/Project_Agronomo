@@ -1,0 +1,43 @@
+<ion-content class="background">
+    <form method="post">
+        <ion-grid>
+            <ion-card class="bazul">
+                <ion-header>
+                    <ion-toolbar class="darks">
+                        <ion-title class="ion-text-center">Iniciar Sesion</ion-title>
+                    </ion-toolbar>
+                </ion-header>
+                <ion-card>
+                    <ion-button expand="block" color="medium" routerLink="/correo">
+                        Usar correo
+                        <ion-icon slot="start" name="person"></ion-icon>
+                    </ion-button>
+                </ion-card>
+                <ion-card >
+                    <ion-button expand="block" class="google" (click)="logingoogle()">
+                        Continuar con Google
+                        <ion-icon slot="start" name="logo-google"></ion-icon>
+                    </ion-button>
+                </ion-card>
+                <ion-card >
+                    <ion-button expand="block" class="facebook" (click)="loginfacebook()">
+                        Continuar con Facebook
+                        <ion-icon slot="start" name="logo-facebook"></ion-icon>
+                    </ion-button>
+                </ion-card>
+            </ion-card>
+            <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+                <ion-fab-button>
+                    <ion-icon name="person"></ion-icon>
+                </ion-fab-button>
+            </ion-fab>
+        </ion-grid>
+        
+    </form>
+</ion-content>
+<ion-footer>
+    <p class="ion-text-center">
+        ¿no tienes cuenta?
+        <a routerLink="/register">Registrate </a>
+    </p>
+</ion-footer>

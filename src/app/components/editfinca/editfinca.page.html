@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>Editar Finca</ion-title>
+        <ion-back-button slot="start"></ion-back-button>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="background">
+  <form method="post">
+      <ion-card *ngFor="let finca of fincas">
+          <ion-card>
+              <ion-item>
+                  <ion-label color="medium" position="floating">Nombre</ion-label>
+                  <ion-icon color="medium" slot="start" name="at-outline"></ion-icon>
+                  <ion-input type="text"  [value]="finca.fin_nom" #nombre required></ion-input>
+              </ion-item>
+          </ion-card>
+          <ion-card>
+              <ion-item>
+                  <ion-label color="medium" position="floating">Area</ion-label>
+                  <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+                  <ion-input type="number" [value]="finca.fin_are" #area required></ion-input>
+              </ion-item>
+          </ion-card>
+          <ion-card>
+            <ion-item>
+                <ion-label color="medium" position="floating">Descripcion</ion-label>
+                <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+                <ion-input type="text" [value]="finca.fin_des" #descripcion required></ion-input>
+            </ion-item>
+        </ion-card>
+        <ion-button fill="outline" color="dark" expand="block" (click)="edit(nombre, area, descripcion)">
+                      Guardar
+                      <ion-icon slot="start" color="dark" name="paper-plane-outline"></ion-icon>
+                  </ion-button>
+        </ion-card>
+                  
+  </form>
+</ion-content>

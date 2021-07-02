@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button color="success"></ion-menu-button>
+            <ion-buttons slot="secondary">
+                <ion-back-button></ion-back-button>
+            </ion-buttons>
+            <ion-title>Factura</ion-title>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" >
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" >
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button class="success" [routerLink]="['/tabs/tabs/lote','idfinca']">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-card class="bazul" *ngFor="let factura of facturas">
+        <ion-card-header>
+            <ion-card-title>numero de factura: {{factura.fac_id}}</ion-card-title>
+            <ion-card-subtitle>fecha: {{factura.fac_fec}}</ion-card-subtitle>
+            <ion-card-subtitle>tipo de pago: {{factura.fac_tip}}</ion-card-subtitle>
+            <ion-card-subtitle>valor: {{factura.fac_val}}</ion-card-subtitle>
+            <ion-card-subtitle>catidad: {{factura.fac_cant}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+            TOTAL: {{factura.fac_val * factura.fac_cant}}
+        </ion-card-content>
+        <ion-button class="bverde" color="dark" expand="block" fill="outline" shape="round" (click)="proveedores(factura.fac_id)">
+            Ver proveedor
+            <ion-icon slot="start" name="person-circle-sharp"></ion-icon>
+        </ion-button>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,67 @@
+<ion-content class="background">
+
+    <form [formGroup]="migrupo1" (ngSubmit)="salvarFormulario()">
+        <ion-grid>
+        
+        <ion-card class="bazul" >
+            <ion-toolbar class="background">
+                <ion-title class="ion-text-center">Ingreso con correo</ion-title>
+            </ion-toolbar>
+            <ion-card>
+                <ion-item>
+                    <ion-label color="medium" position="floating">Direccion de correo</ion-label>
+                    <ion-icon color="medium" slot="start" name="at-outline"></ion-icon>
+                    <ion-input  formControlName="email" type="text" name="email"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="email.invalid && (email.dirty || email.touched)">
+                    <ion-label text-wrap color="danger" *ngIf="email.errors.pattern">
+                      No es un formato de direccion de correo valido
+                      </ion-label>
+                    <ion-label text-wrap color="danger" *ngIf="email.errors.minlength">
+                      La direccion necesita mas caracteres
+                      </ion-label>
+                      <ion-label text-wrap color="danger" *ngIf="email.errors.required">
+                        Se requiere una direccion de correo
+                        </ion-label>
+                  </ion-item>
+            </ion-card>
+            <ion-card>
+                <ion-item>
+                    <ion-label color="medium" position="floating">Contraseña</ion-label>
+                    <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+                    <ion-input formControlName="password" type="password" name="password"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="password.invalid && (password.dirty || password.touched)">
+      
+                    <ion-label text-wrap color="danger" *ngIf="password.errors.minlength">
+                      necesita mas caracteres
+                      </ion-label>
+                      <ion-label text-wrap color="danger" *ngIf="password.errors.required">
+                        requerido
+                        </ion-label>
+                  </ion-item>
+            </ion-card>
+                    <ion-button type="submit"  [disabled]="migrupo1.invalid" fill="outline" color="dark" expand="block">
+                        Iniciar
+                        <ion-icon slot="start" color="dark" name="paper-plane-outline"></ion-icon>
+                    </ion-button>
+        </ion-card>
+        <p class="ion-text-center">
+            ¿Olvido Contraseña?
+            <a routerLink="/forgot-password">Recuperar</a>
+        </p>
+        <p class="ion-text-center">
+        ¿no tienes cuenta?
+        <a routerLink="/register">Registrate </a>
+    </p>
+    </ion-grid>
+    </form>
+        
+        
+</ion-content>
+<ion-footer>
+    <p class="ion-text-center">
+        Iniciar desde una plataforma
+        <a routerLink="/">aqui</a>
+    </p>
+</ion-footer>

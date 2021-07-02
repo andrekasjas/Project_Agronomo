@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button color="success"></ion-menu-button>
+            <ion-buttons slot="secondary">
+                <ion-back-button></ion-back-button>
+            </ion-buttons>
+            <ion-title>Operaciones</ion-title>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" >
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" >
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button class="success" (click)="addoperacion(id)">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-card class="bazul" *ngFor="let operacion of operaciones">
+        <div class="ion-text-right">
+            <ion-button color="medium" fill="outline" size="small">
+                <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button color="medium" fill="outline" size="small">
+                <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+        </div>
+        <ion-card-title id="titul">{{operacion.ope_nom | uppercase}}</ion-card-title>
+        <ion-card-header>
+            <ion-card-subtitle>{{operacion.ope_nom}}</ion-card-subtitle>
+            <ion-card-subtitle>{{operacion.ope_fec}}</ion-card-subtitle>
+            <ion-card-subtitle>{{operacion.ope_fin}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content class="bazul">
+            <ion-button class="bverde" color="medium" fill="outline" shape="round" size="small" (click)="encargados(operacion.ope_id)">
+                encargados
+                <ion-icon color="medium" slot="start" name="build-sharp"></ion-icon>
+            </ion-button>
+            <ion-button class="bverde" id="container" color="dark" fill="outline" shape="round" size="small" (click)="insumoso(operacion.ope_id)">
+                Ver insumos
+                <ion-icon color="success" slot="start" name="flower-sharp"></ion-icon>
+            </ion-button>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

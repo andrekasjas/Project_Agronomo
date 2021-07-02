@@ -1,0 +1,95 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-buttons slot="secondary">
+              <ion-back-button></ion-back-button>
+          </ion-buttons>
+          <ion-title>Encargado</ion-title>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+<form [formGroup]="migrupo1">
+    <ion-card *ngFor="let operacion of operaciones">
+        <ion-card-header>
+            <ion-card-title class="ion-text-center">Agregando encargado a la operacion "{{operacion.ope_nom|lowercase}}"</ion-card-title>
+        </ion-card-header>
+      <ion-card>
+        <ion-item >
+            <ion-label>Trabajador encargado</ion-label>
+            <ion-select #c (ionChange)="a(c.value.tra_nom)" interface="popover" value="nada">
+              <ion-select-option *ngFor="let trabajador of trabajadores" [value]="trabajador">{{trabajador.tra_nom|lowercase}}</ion-select-option>
+              <ion-select-option [value]="otro">Nuevo trabajador</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-card *ngIf="c.value.tra_nom == 'otro'">
+          <ion-card>
+            <ion-item>
+                <ion-label color="medium" position="floating">Cedula del trabajador</ion-label>
+                <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+                <ion-input formControlName="cedula" type="number" name="cedula"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="cedula.invalid && (cedula.dirty || cedula.touched)">
+                <ion-label text-wrap color="danger" *ngIf="cedula.errors.required">
+                      Requerido
+                  </ion-label>
+            </ion-item>
+          </ion-card>
+          <ion-card>
+            <ion-item>
+                <ion-label color="medium" position="floating">Nombre del trabajador</ion-label>
+                <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+                <ion-input formControlName="nombre" type="text" name="nombre"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                <ion-label text-wrap color="danger" *ngIf="nombre.errors.required">
+                      Requerido
+                  </ion-label>
+            </ion-item>
+          </ion-card>
+          <ion-card>
+            <ion-item>
+                <ion-label color="medium" position="floating">Telefono del trabajador</ion-label>
+                <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+                <ion-input formControlName="telefono" type="number" name="telefono"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+                <ion-label text-wrap color="danger" *ngIf="telefono.errors.required">
+                      Requerido
+                  </ion-label>
+            </ion-item>
+          </ion-card>
+            
+        </ion-card>
+        <ion-card>
+          <ion-item>
+              <ion-label color="medium" position="floating">Pago del trabajador</ion-label>
+              <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+              <ion-input formControlName="pago" type="number" name="pago"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="pago.invalid && (pago.dirty || pago.touched)">
+              <ion-label text-wrap color="danger" *ngIf="pago.errors.required">
+                    Requerido
+                </ion-label>
+          </ion-item>
+        </ion-card>
+        <ion-card *ngIf="(c.value.tra_nom == 'otro'); else elseTemplate">
+          
+        
+        <ion-button [disabled]="migrupo1.invalid" fill="outline" color="dark" expand="block" (click)="addtrabajador(cedula, nombre, telefono, pago)">
+          Guardar otro
+          <ion-icon slot="start" color="dark" name="paper-plane-outline"></ion-icon>
+      </ion-button>
+    </ion-card>
+        <ng-template #elseTemplate>
+            <ion-button [disabled]="pago.invalid || c.value == 'nada'" fill="outline" color="dark" expand="block" (click)="addencargado(c.value.tra_ced, pago)">
+                Guardar
+                <ion-icon slot="start" color="dark" name="paper-plane-outline"></ion-icon>
+            </ion-button>
+        </ng-template>
+      </ion-card>
+            
+    </ion-card>
+</form>
+</ion-content>

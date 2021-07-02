@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+    <ion-toolbar class="background">
+        <ion-buttons slot="start">
+            <ion-menu-button color="success"></ion-menu-button>
+            <ion-buttons slot="secondary">
+                <ion-back-button></ion-back-button>
+            </ion-buttons>
+            <ion-title>Lotes</ion-title>
+            <!-- <ion-searchbar placeholder="Nombre" slot="end" (ionChange)="buscar($event)" debounce="2000"></ion-searchbar> -->
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" >
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" >
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button class="success" (click)="addlote(id)">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <div>
+    <ion-card class="bazul" *ngFor="let lote of lotes">
+        <div>
+            <br><br>
+            <ion-fab   size="small" vertical="top" horizontal="end" slot="fixed">
+                <ion-fab-button color="transparent" size="small">
+                  <ion-icon color="mediums" size="small" name="ellipsis-horizontal"></ion-icon>
+                </ion-fab-button>
+                <ion-fab-list (click)="update(finca.fin_id)" side="bottom">
+                  <ion-fab-button color="warning"><ion-icon name="create-outline"></ion-icon></ion-fab-button>
+                  <ion-fab-button color="danger"><ion-icon name="trash-outline"></ion-icon></ion-fab-button>
+                </ion-fab-list>
+                <ion-fab-list  (click)="eliminar(finca.fin_id)" side="start">
+                  
+                </ion-fab-list>
+              </ion-fab>
+        </div>
+        <ion-card-title class="centro" >{{lote.lot_nom}}</ion-card-title>
+        <ion-card-header>
+            <ion-card-subtitle>Area: {{lote.lot_are}}</ion-card-subtitle>
+            <ion-card-subtitle color="danger">gastos</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+        {{lote.lot_des}}
+        </ion-card-content>
+        <ion-button class="background" expand="block" fill="sharp" (click)="cultivos(lote.lot_id)">
+            Ver Cultivos
+            <ion-icon color="dark" slot="start" name="leaf-sharp"></ion-icon>
+        </ion-button>
+
+    </ion-card>
+</div>
+</ion-content>

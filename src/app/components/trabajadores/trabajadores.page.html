@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button color="success"></ion-menu-button>
+            <ion-title>Trabajadores</ion-title>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" >
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" >
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button class="success" [routerLink]="['/tabs/tabs/lote','idfinca']">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-card class="bazul">
+        <div class="ion-text-right">
+            <ion-button color="medium" fill="outline" size="small">
+                <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button color="medium" fill="outline" size="small">
+                <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+        </div>
+        <ion-card-title id="titul">Nombre del trabajador</ion-card-title>
+        <ion-card-header>
+            <ion-card-subtitle>telefono</ion-card-subtitle>
+            <ion-card-subtitle color="danger">pago</ion-card-subtitle>
+        </ion-card-header>
+    </ion-card>
+</ion-content>
