@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-buttons slot="secondary">
+                <ion-back-button></ion-back-button>
+            </ion-buttons>
+            <ion-title>Crear nueva lote</ion-title>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <form [formGroup]="migrupo1" (ngSubmit)="salvarFormulario()">
+      <ion-card *ngFor="let finca of fincas">
+          <ion-card-header>
+              <ion-card-title class="ion-text-center">Agregando lote a la finca "{{finca.fin_nom|lowercase}}"</ion-card-title>
+          </ion-card-header>
+          <ion-card>
+              <ion-item>
+                  <ion-label color="medium" position="floating">Nombre</ion-label>
+                  <ion-icon color="medium" slot="start" name="at-outline"></ion-icon>
+                  <ion-input formControlName="nombre" type="text" name="nombre"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                <ion-label text-wrap color="danger" *ngIf="nombre.errors.minlength">
+                  El nombre necesita mas caracteres
+                  </ion-label>
+                  <ion-label text-wrap color="danger" *ngIf="nombre.errors.required">
+                    Requerido
+                    </ion-label>
+              </ion-item>
+          </ion-card>
+          <ion-card>
+              <ion-item>
+                  <ion-label color="medium" position="floating">Area</ion-label>
+                  <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+                  <ion-input formControlName="area" type="number" name="area"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="area.invalid && (area.dirty || area.touched)">
+                  <ion-label text-wrap color="danger" *ngIf="area.errors.required">
+                        Requerido
+                    </ion-label>
+              </ion-item>
+          </ion-card>
+          <ion-card>
+            <ion-item>
+                <ion-label color="medium" position="floating">Descripcion</ion-label>
+                <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+                <ion-input formControlName="descripcion" type="text" name="descripcion"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                <ion-label text-wrap color="danger" *ngIf="descripcion.errors.required">
+                      Requerido
+                  </ion-label>
+            </ion-item>
+        </ion-card>
+          <ion-row>
+              <ion-col>
+                  <ion-button [disabled]="migrupo1.invalid" fill="outline" color="dark" expand="block" (click)="addlote(nombre, area, descripcion)">
+                      Guardar
+                      <ion-icon slot="start" color="dark" name="paper-plane-outline"></ion-icon>
+                  </ion-button>
+              </ion-col>
+          </ion-row>
+      </ion-card>
+  </form>
+</ion-content>

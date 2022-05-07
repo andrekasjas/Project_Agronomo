@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+      <ion-title>Buscaste {{text}}</ion-title>
+      <ion-back-button defaultHref="home" slot="start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  [fullscreen]="true">
+  <div>
+  <ion-card class="bazul" *ngFor="let finca of productsArr">
+      <div>
+          <br><br>
+          <ion-fab   size="small" vertical="top" horizontal="end" slot="fixed">
+              <ion-fab-button color="transparent" size="small">
+                <ion-icon color="mediums" size="small" name="ellipsis-horizontal"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-list  color="warning" (click)="update(finca.fin_id)" side="bottom">
+                <ion-fab-button ><ion-icon color="warning" name="create-outline"></ion-icon></ion-fab-button>
+              </ion-fab-list>
+              <ion-fab-list color="danger" (click)="eliminar(finca.fin_id)" side="start">
+                <ion-fab-button><ion-icon color="danger" name="trash-outline"></ion-icon></ion-fab-button>
+              </ion-fab-list>
+            </ion-fab>
+      </div>
+      <ion-card-title class="ion-text-center">{{finca.fin_nom | uppercase}}</ion-card-title>
+      <ion-card-header>
+          <ion-card-subtitle>Area: {{finca.fin_are}}</ion-card-subtitle>
+          <ion-card-subtitle>gastos</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+          {{finca.fin_des}}
+      </ion-card-content>
+      <ion-button class="bverde" color="dark" expand="block" fill="outline"  (click)="lotes(finca.fin_id)">
+          Ver Lotes
+          <ion-icon color="success" slot="start" name="apps-sharp"></ion-icon>
+      </ion-button>
+      <br>
+  </ion-card>
+</div>
+</ion-content>

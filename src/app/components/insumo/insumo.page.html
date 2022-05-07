@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button color="success"></ion-menu-button>
+            <ion-buttons slot="secondary">
+                <ion-back-button></ion-back-button>
+            </ion-buttons>
+            <ion-title>Insumos</ion-title>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" >
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" >
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button class="success" [routerLink]="['/tabs/tabs/lote','idfinca']">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-card class="bazul" *ngFor="let insumo of insumos">
+        <div class="ion-text-right">
+            <ion-button color="medium" fill="outline" size="small">
+                <ion-icon name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button color="medium" fill="outline" size="small">
+                <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+        </div>
+        <ion-card-title id="titul">{{insumo.ins_nom}}</ion-card-title>
+        <ion-card-header>
+            <ion-card-subtitle>fecha de vencimiento: {{insumo.ins_fecv}}</ion-card-subtitle>
+            <ion-card-subtitle>precio</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-button class="bverde" color="dark" expand="block" fill="outline" shape="round" (click)="factura(insumo.ins_id)">
+            Ver facturas
+            <ion-icon color="dark" slot="start" name="newspaper-outline"></ion-icon>
+        </ion-button>
+
+    </ion-card>
+</ion-content>

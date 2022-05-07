@@ -1,0 +1,78 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="background">
+      <ion-buttons slot="start">
+          <ion-buttons slot="secondary">
+              <ion-back-button></ion-back-button>
+          </ion-buttons>
+          <ion-title>Crear nueva operacion</ion-title>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <form [formGroup]="migrupo1" (ngSubmit)="salvarFormulario()">
+        <ion-card class="bazul" *ngFor="let cultivo of cultivos">
+            <ion-card-header>
+                <ion-card-title class="ion-text-center">Agregando operacion a el cultivo "{{cultivo.cul_nom|lowercase}}"</ion-card-title>
+            </ion-card-header>
+            <ion-card>
+                <ion-item>
+                    <ion-label color="medium" position="floating">Nombre</ion-label>
+                    <ion-icon color="medium" slot="start" name="at-outline"></ion-icon>
+                    <ion-input formControlName="nombre" type="text" name="nombre"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                    <ion-label text-wrap color="danger" *ngIf="nombre.errors.minlength">
+                        El nombre necesita mas caracteres
+                    </ion-label>
+                    <ion-label text-wrap color="danger" *ngIf="nombre.errors.required">
+                    Requerido
+                    </ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card>
+                <ion-item>
+                    <ion-label color="medium" position="stacked">Tiempo de operacion</ion-label>
+                    <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+                    <ion-input formControlName="tiempo" type="time" name="tiempo"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="tiempo.invalid && (tiempo.dirty || tiempo.touched)">
+                    <ion-label text-wrap color="danger" *ngIf="tiempo.errors.required">
+                        Requerido
+                    </ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card>
+                <ion-item>
+                    <ion-label color="medium" position="stacked">Fecha</ion-label>
+                    <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+                    <ion-input formControlName="fecha" type="date" name="fecha"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+                    <ion-label text-wrap color="danger" *ngIf="fecha.errors.required">
+                        Requerido
+                    </ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card>
+                <ion-item>
+                    <ion-label color="medium" position="floating">Finalidad de la operacion</ion-label>
+                    <ion-icon color="medium" slot="start" name="at-outline"></ion-icon>
+                    <ion-input formControlName="finalidad" type="text" name="finalidad"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="finalidad.invalid && (finalidad.dirty || finalidad.touched)">
+                    <ion-label text-wrap color="danger" *ngIf="finalidad.errors.minlength">
+                        El nombre necesita mas caracteres
+                    </ion-label>
+                    <ion-label text-wrap color="danger" *ngIf="finalidad.errors.required">
+                        Requerido
+                    </ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-button type="submit" [disabled]="migrupo1.invalid" fill="outline" color="dark" expand="block">
+                Guardar y agregar encargado
+                <ion-icon slot="start" color="dark" name="paper-plane-outline"></ion-icon>
+            </ion-button>
+        </ion-card>
+    </form>
+</ion-content>

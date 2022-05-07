@@ -1,0 +1,7 @@
+{
+  "name": "sirbe",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

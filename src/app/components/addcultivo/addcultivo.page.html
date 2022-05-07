@@ -1,0 +1,103 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-buttons slot="secondary">
+              <ion-back-button></ion-back-button>
+          </ion-buttons>
+          <ion-title>Crear nuevo cultivo</ion-title>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+<form [formGroup]="migrupo1">
+    <ion-card *ngFor="let lote of lotes">
+        <ion-card-header>
+            <ion-card-title class="ion-text-center">Agregando cultivo a el lote "{{lote.lot_nom|lowercase}}"</ion-card-title>
+        </ion-card-header>
+        <ion-card>
+            <ion-item>
+                <ion-label color="medium" position="floating">Nombre</ion-label>
+                <ion-icon color="medium" slot="start" name="at-outline"></ion-icon>
+                <ion-input formControlName="nombre" type="text" name="nombre"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <ion-label text-wrap color="danger" *ngIf="nombre.errors.minlength">
+                El nombre necesita mas caracteres
+                </ion-label>
+                <ion-label text-wrap color="danger" *ngIf="nombre.errors.required">
+                  Requerido
+                  </ion-label>
+            </ion-item>
+        </ion-card>
+        <ion-card>
+            <ion-item>
+                <ion-label color="medium" position="stacked">Fecha inicio</ion-label>
+                <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+                <ion-input formControlName="inicio" type="date" name="inicio"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="inicio.invalid && (inicio.dirty || inicio.touched)">
+                <ion-label text-wrap color="danger" *ngIf="inicio.errors.required">
+                      Requerido
+                  </ion-label>
+            </ion-item>
+        </ion-card>
+        <ion-card>
+          <ion-item>
+              <ion-label color="medium" position="stacked">Fecha Fin</ion-label>
+              <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+              <ion-input formControlName="fin" type="date" name="fin"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="fin.invalid && (fin.dirty || fin.touched)">
+              <ion-label text-wrap color="danger" *ngIf="fin.errors.required">
+                    Requerido
+                </ion-label>
+          </ion-item>
+      </ion-card>
+        <ion-card>
+          <ion-item>
+              <ion-label color="medium" position="floating">Cantidad</ion-label>
+              <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+              <ion-input formControlName="cantidad" type="number" name="cantidad"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="cantidad.invalid && (cantidad.dirty || cantidad.touched)">
+              <ion-label text-wrap color="danger" *ngIf="cantidad.errors.required">
+                    Requerido
+                </ion-label>
+          </ion-item>
+      </ion-card>
+      <ion-card>
+        <ion-item >
+            <ion-label>Tipo de cultivo</ion-label>
+            <ion-select #c  interface="popover" value="nada">
+              <ion-select-option *ngFor="let tiposcultivo of tiposcultivos" [value]="tiposcultivo">{{tiposcultivo.tip_nom|lowercase}}</ion-select-option>
+              <ion-select-option [value]="otro">Otro</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-card *ngIf="(c.value.tip_nom == 'otro'); else elseTemplate">
+            <ion-item>
+                <ion-label color="medium" position="floating">Nombre de tipo de cultivo</ion-label>
+                <ion-icon color="medium" slot="start" name="lock-closed-outline"></ion-icon>
+                <ion-input formControlName="tip" type="text" name="tip"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="tip.invalid && (tip.dirty || tip.touched)">
+                <ion-label text-wrap color="danger" *ngIf="tip.errors.required">
+                      Requerido
+                  </ion-label>
+            </ion-item>
+            <ion-button [disabled]="migrupo1.invalid" fill="outline" color="dark" expand="block" (click)="addcultivootro(nombre, inicio, fin, cantidad, tip)">
+                Guardar otro
+                <ion-icon slot="start" color="dark" name="paper-plane-outline"></ion-icon>
+            </ion-button>
+        </ion-card>
+        <ng-template #elseTemplate>
+            <ion-button [disabled]="nombre.invalid || inicio.invalid || fin.invalid || cantidad.invalid || c.value == 'nada'" fill="outline" color="dark" expand="block" (click)="addcultivo(nombre, inicio, fin, cantidad, c.value.tip_id)">
+                Guardar
+                <ion-icon slot="start" color="dark" name="paper-plane-outline"></ion-icon>
+            </ion-button>
+        </ng-template>
+      </ion-card>
+            
+    </ion-card>
+</form>
+</ion-content>

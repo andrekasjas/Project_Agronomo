@@ -1,0 +1,50 @@
+ion-menu-button {
+    color: var(--ion-color-primary);
+}
+
+#container {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.bazul {
+    box-shadow: 0px 14px 25px rgba(6, 9, 212, 0.59);
+    border-radius: 5px;
+}
+
+.bverde {
+    box-shadow: 0px 20px 30px rgba(0, 255, 0, 0.911);
+    border-radius: 5px;
+}
+
+#dime {
+    width: 350px;
+    height: 250px;
+    --border-radius: 0px;
+}
+
+#center {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    transform: translateY(-50%);
+}
+
+#titul {
+    text-align: left;
+    position: absolute;
+    left: 3%;
+    right: 0;
+    top: 0;
+    transform: translateY(30%);
+}
+
+ion-content.background {
+    --background: url(../../../assets/img/lavafrut.jpg) 0 0/100% 100% no-repeat;
+}
