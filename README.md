@@ -1,5 +1,7 @@
 # Proyecto Agronomo
 ### Aplicacion movil para el control y contabilidad de propietarios de fincas, desarrollada con ionic - angular, consumiendo una apirest desarrollada con postgresql y nodejs 
+### Host
+-[View](https://proyectoagronomo-582d5.web.app/login)
 ## Login
 ### Login para acceder de forma local con correo y contraseña, junton con opciones restablecer contraseña, tambien login con google y facebook
 ![agrono_login](https://user-images.githubusercontent.com/62920120/143484676-14aad842-b57a-4460-bd78-37dfa1f5bd85.png)
